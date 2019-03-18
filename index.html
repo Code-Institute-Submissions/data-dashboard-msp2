@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,23 +17,42 @@
     <script type="text/javascript" src="static/js/crossfilter.js"></script>
     <script type="text/javascript" src="static/js/dc.js"></script>
     <script type="text/javascript" src="static/js/queue.min.js"></script>
-  
+
 
 </head>
+
 <body>
-    <h1>Monotreme sightings accross Australia</h1> 
-    
+    <h1>Monotreme sightings accross Australia</h1>
+
+    <div class="row">
+        <p class="col-md-6">
+            Monotremes are a group of mammals that form the order Monotremata. Monotremes are especially odd in that they are the only mammals that lay eggs, but also feed their offspring with milk. Two of the five species of Monotremes are endemic to Australia.
+            These are the Short-beaked Echidna and the Duck-billed Platypus. The Atlas of Living Australia, or ALA, is a repository of information on Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings of Australian
+            Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings of these elusive animals. You can click on differnet parts of the graphs to show data for just specific species, their
+            occurance over one ore multiple states, and during particular months or years!
+        </p>
+
+        <img class="col-md-3" src="/static/images/DIvanDuinkerken_echidna.jpg"></img>
+        <img class="col-md-3" src="/static/images/DIvanDuinkerken_platypus.jpg"></img>
+    </div>
+
+    <div class="row selectreset">
+        <div id="selectSpecies" class="col-md-6"></div>
+    </div>
+
+    </div>
     <h2></h2>
     <div id="sightings_per_state" class="col-md-6"></div>
     <div class="map"></div>
-    
-   <h2>Sightings over years and months</h2>
+
+    <h2>Sightings over years and months</h2>
     <div class="row sightings">
         <div id="sightings_over_year" class="col-md-6"></div>
         <div id="sightings_over_month" class="col-md-6"></div>
     </div>
-    
-    
+
+
     <script type="text/javascript" src="static/js/charts.js"></script>
 </body>
+
 </html>
