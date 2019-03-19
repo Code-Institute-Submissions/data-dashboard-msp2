@@ -83,7 +83,7 @@ function makeGraphs(error, sightingsData) {
         .height(555)
         .dimension(stateDim)
         .group(sightingsStateGroup)
-        .colors(['#f5f5f5'])
+        .colors(['blue'])
         .elasticX(true)
         .labelOffsetY(10)
         .xAxis().ticks(4);
@@ -137,14 +137,13 @@ function makeGraphs(error, sightingsData) {
             dc.lineChart(yearChart)
             .dimension(yearDim)
             .colors('green')
-            .group(sightingsyearGroupEchidna, 'Short-beaked Echidna'),
-
+            .group(sightingsyearGroupEchidna, 'Short-beaked Echidna')
+            .renderArea(true),
             dc.lineChart(yearChart)
             .dimension(yearDim)
             .colors('blue')
             .group(sightingsyearGroupPlatypus, 'Duck-billed Platypus')
-
-
+            .renderArea(true)
         ]);
 
     console.log(speciesGroup.all());
