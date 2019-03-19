@@ -158,12 +158,13 @@ function makeGraphs(error, sightingsData) {
     //Data to be updated everytime crossfilter data is filtered (map and number counts of respective species)
     var update = function() {
         //Draw Map of Australia
-        map.setView([-29.2744, 133.7751], 4);
+        map.setView([-29.2744, 133.7751], 4).scrollWheelZoom.disable();
         mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
         L.tileLayer(
             'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; ' + mapLink + ' Contributors',
                 maxZoom: 15,
+                minZoom: 4,
             }).addTo(map);
 
 
