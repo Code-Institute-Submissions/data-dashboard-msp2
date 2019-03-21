@@ -50,3 +50,9 @@ footer {
     font-size: 100px;
     color: #fafafa;
 }
+
+.dismiss {
+    border: none;
+    color: #fff;
+    background-color: transparent;
+}
