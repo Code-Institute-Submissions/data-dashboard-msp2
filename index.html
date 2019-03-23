@@ -40,21 +40,29 @@
             Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings of these elusive animals. You can click on differnet parts of the graphs to show data for just specific species, their
             occurance over one ore multiple states, and during particular months or years!
         </p>
-
-        <img class="col-md-3" src="/static/images/DIvanDuinkerken_echidna.jpg"></img>
-        <img class="col-md-3" src="/static/images/DIvanDuinkerken_platypus.jpg"></img>
+       
+        <div class="col-md-4 img-container">
+            <p class="speciesName">Short-beaked Echidna</p>
+            <img class="photo" src="/static/images/DIvanDuinkerken_768-Echidna-00243.png"></img>
+            
+        </div>
+         <div class="col-md-3 img-container">
+             <p class="speciesName">Duck-billed Platypus</p>
+            <img class="photo" src="/static/images/DIvanDuinkerken_768-Platypus-00701.png"></img>
+            
+        </div>
     </div>
 
     <div class="row selectreset">
         <div id="selectSpecies" class="col-md-3"></div>
         <a class="reset col-md-3" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
 
-
+        
         <div class="col-md-3">
-            <p id="Short-beaked Echidna"></p>
+            <p id="Short-beaked Echidna" class="counter"></p>
         </div>
         <div class="col-md-3">
-            <p id="Duck-billed Platypus"></p>
+            <p id="Duck-billed Platypus" class="counter"></p>
         </div>
     </div>
     </div>
@@ -78,14 +86,16 @@
             <div class="col-md-4">
                 <img class="ala" src="/static/images/Atlas_of_Australia_logo_300.gif"></img>
             </div>
+            <div class="copyright col-md-4">
+                <p>Data is copyright of Atlas of Living Australia</p>
+                <p>Images are copyright of Daniel van Duinkerken</p>
+            </div>
             <div class="contact col-md-4">
                 <p>Questions, Remarks or Bugs?</p>
                 <p>Contact Me Here!</p>
                 <a class="symbol" title="Contact" href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
             </div>
-            <div class="copyright col-md-4">
-                <p>COPYRIGHT</p>
-            </div>
+
         </div>
     </footer>
 
@@ -132,7 +142,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script>
         $('#myModal').submit(function() {
-        $('#myModal').modal('hide');
+            $('#myModal').modal('hide');
         });
     </script>
 </body>

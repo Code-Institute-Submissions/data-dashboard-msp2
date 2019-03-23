@@ -2,12 +2,26 @@ body {
     margin: 40px 80px;
 }
 
-img {
+.img-container {
+    max-width: 400px;
+}
+
+
+
+.photo {
     
-    height: 300px;
+    
+    width: 100%;
+    height: auto;
+}
+
+.speciesName {
+    text-align: center;
+    font-size: 30px;
 }
 
 .selectreset {
+
     margin-bottom: 20px;
 }
 
@@ -16,17 +30,24 @@ img {
 }
 
 .top {
-    height: 320px;   
-    
+    height: 50vh;
+
+}
+
+.counter {
+    border: 3px;
+    text-align: center;
+    font-size: 50px;
+
 }
 
 .occurances {
-    height: 600px; 
+    height: 600px;
     margin-bottom: 100px;
 }
 
 .sightings {
-    height: 500px;  
+    height: 500px;
     margin-bottom: 50px;
 }
 
@@ -46,6 +67,7 @@ footer {
 .contact p {
     font-size: 30px;
 }
+
 .contact a i {
     font-size: 100px;
     color: #fafafa;

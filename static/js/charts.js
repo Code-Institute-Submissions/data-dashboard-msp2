@@ -8,7 +8,10 @@ function makeGraphs(error, sightingsData) {
     //CREATE CROSSFILTER RECORD
     var ndx = crossfilter(sightingsData);
 
+    var dateFormat = d3.timeParse("%Y-%m-%d");
+
     sightingsData.forEach(function(d) {
+        d["eventDate"] = dateFormat(d["eventDate"]);
         d["decimalLongitude"] = +d["decimalLongitude"];
         d["decimalLatitude"] = +d["decimalLatitude"];
         d["month"] = +d["month"];
@@ -16,7 +19,10 @@ function makeGraphs(error, sightingsData) {
         d["individualCount"] = +d["individualCount"];
     });
 
+    //console.log(sightingsData);
+
     //CREATE DIMENSIONS
+    var dateDim = ndx.dimension(function(d) { return d["eventDate"] });
     var speciesDim = ndx.dimension(dc.pluck('vernacularName'));
     var stateDim = ndx.dimension(dc.pluck('stateProvince'));
     var monthDim = ndx.dimension(dc.pluck('month'));
@@ -24,10 +30,24 @@ function makeGraphs(error, sightingsData) {
     var allDim = ndx.dimension(function(d) { return d; });
 
 
-    //CREATE GROUPS 
-    var speciesGroup = speciesDim.group();
-    var sightingsStateGroup = stateDim.group()
+    var minDate = dateDim.bottom(1)[0];
+    var maxDate = dateDim.top(1)[0];
 
+    console.log(maxDate);
+
+    //CREATE GROUPS 
+    var speciesGroup = speciesDim.group().reduceSum(function(d) {
+        return +d.individualCount
+    });
+
+    var dateDim = ndx.dimension(function(d) { return d["eventDate"] });
+
+    var sightingsStateGroup = stateDim.group().reduceSum(function(d) {
+        return +d.individualCount
+    });
+
+
+    //Average Sightings per Month
     var sightingsmonthGroupPlatypus = monthDim.group().reduceSum(function(d) {
         if (d.vernacularName === 'Duck-billed Platypus') {
             return +d.individualCount;
@@ -46,6 +66,7 @@ function makeGraphs(error, sightingsData) {
         }
     });
 
+    //Average sightings per year
     var sightingsyearGroupPlatypus = yearDim.group().reduceSum(function(d) {
         if (d.vernacularName === 'Duck-billed Platypus') {
             return +d.individualCount;
@@ -64,7 +85,7 @@ function makeGraphs(error, sightingsData) {
         }
     });
 
-    console.log(sightingsyearGroupEchidna.all())
+
 
     //DC.JS Charts
     var selectSpecies = dc.selectMenu("#selectSpecies");
@@ -83,7 +104,7 @@ function makeGraphs(error, sightingsData) {
         .height(555)
         .dimension(stateDim)
         .group(sightingsStateGroup)
-        .colors(['blue'])
+        .colors(['brown'])
         .elasticX(true)
         .labelOffsetY(10)
         .xAxis().ticks(4);
@@ -111,101 +132,114 @@ function makeGraphs(error, sightingsData) {
     monthChart
         .width(600)
         .height(500)
-        .margins({ top: 10, right: 50, bottom: 30, left: 50 })
         .dimension(monthDim)
-        .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+        .legend(dc.legend().x(100).y(15).itemHeight(13).gap(5))
         .group(sightingsmonthGroupPlatypus, 'Duck-billed Platypus')
         .stack(sightingsmonthGroupEchidna, 'Short-beaked Echidna')
         .ordinalColors(['blue', 'green'])
         .transitionDuration(500)
         .x(d3.scaleOrdinal())
         .xUnits(dc.units.ordinal)
-        .elasticY(false)
+        .elasticY(true)
         .xAxisLabel('Month')
-        .yAxis().ticks(10);
-
-
-    yearChart
-        .width(600)
-        .height(500)
-        .x(d3.scaleLinear().domain([2000, 2018]))
-        .xUnits(dc.units.integers)
-        .yAxisLabel("Year")
-        .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
+        .yAxisLabel("Number of sightings")
         .renderHorizontalGridLines(true)
-        .compose([
-            dc.lineChart(yearChart)
-            .dimension(yearDim)
-            .colors('green')
-            .group(sightingsyearGroupEchidna, 'Short-beaked Echidna')
-            .renderArea(true),
-            dc.lineChart(yearChart)
-            .dimension(yearDim)
-            .colors('blue')
-            .group(sightingsyearGroupPlatypus, 'Duck-billed Platypus')
-            .renderArea(true)
-        ]);
+    //.yAxis().ticks(10);
 
-    console.log(speciesGroup.all());
-    // Add Data on Monotreme numbers to DOM
+ 
 
-
-    var nspecies = selectSpecies.data().length
-
-    //Initialize Leaflet Map
-    var map = L.map('map');
-
-    //Data to be updated everytime crossfilter data is filtered (map and number counts of respective species)
-    var update = function() {
-        //Draw Map of Australia
-        map.setView([-29.2744, 133.7751], 4).scrollWheelZoom.disable();
-        mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
-        L.tileLayer(
-            'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; ' + mapLink + ' Contributors',
-                maxZoom: 15,
-                minZoom: 4,
-            }).addTo(map);
+                yearChart
+                .width(600)
+                .height(500)
+                .x(d3.scaleLinear().domain([2000, 2018]))
+                //.mouseZoomable(true)
+                .xUnits(dc.units.integers)
+                .yAxisLabel("Number of sightings")
+                .xAxisLabel("Year")
+                .elasticY(true)
+                .legend(dc.legend().x(400).y(15).itemHeight(13).gap(5))
+                .renderHorizontalGridLines(true)
+                .renderVerticalGridLines(true)
+                .compose([
+                    dc.lineChart(yearChart)
+                    .dimension(yearDim)
+                    .colors('green')
+                    .group(sightingsyearGroupEchidna, 'Short-beaked Echidna')
+                    .renderArea(true),
+                    dc.lineChart(yearChart)
+                    .dimension(yearDim)
+                    .colors('blue')
+                    .group(sightingsyearGroupPlatypus, 'Duck-billed Platypus')
+                    .renderArea(true)
+                ]);
 
 
-        // Add heat map data
-        var geoData = [];
-        _.each(allDim.top(Infinity), function(d) {
-            geoData.push([d["decimalLatitude"], d["decimalLongitude"], d["individualCount"]]);
-        })
-        var length = geoData.length
 
-        var heat = L.heatLayer(geoData, {
-            radius: 10,
-            blur: 20,
-            maxZoom: 1,
+// Add Data on Monotreme numbers to DOM
+
+
+
+
+//Initialize Leaflet Map
+var map = L.map('map');
+
+//Data to be updated everytime crossfilter data is filtered (map and number counts of respective species)
+var update = function() {
+    //Draw Map of Australia
+    map.setView([-29.2744, 133.7751], 4).scrollWheelZoom.disable();
+    mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+    L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 15,
+            minZoom: 4,
         }).addTo(map);
 
-        // Add Data on Monotreme numbers to DOM
-        for (i = 0; i < nspecies; i++) {
-            var id = speciesGroup.all()[i].key;
-            var numbers = speciesGroup.all()[i].value;
-            document.getElementById(id).innerHTML = (id + ': ' + numbers);
-            console.log(sightingsyearGroupPlatypus)
-            console.log(selectSpecies.data());
-        }
-    };
 
-    update();
+    // Add heat map data
+    var geoData = [];
+    _.each(allDim.top(Infinity), function(d) {
+        geoData.push([d["decimalLatitude"], d["decimalLongitude"], d["individualCount"]]);
+    })
+    var length = geoData.length
 
-    dcCharts = [selectSpecies, stateChart, monthChart, yearChart];
+    var heat = L.heatLayer(geoData, {
+        radius: 10,
+        blur: 20,
+        maxZoom: 1,
+    }).addTo(map);
 
-    _.each(dcCharts, function(dcChart) {
-        dcChart.on("filtered", function(chart, filter) {
-            map.eachLayer(function(layer) {
-                map.removeLayer(layer)
-            });
+    // Add Data on Monotreme numbers to DOM
+    for (i = 0; i < 2; i++) {
+        var id = speciesGroup.all()[i].key;
+        var numbers = speciesGroup.all()[i].value;
+        document.getElementById(id).innerHTML = (numbers);
 
-            update();
+
+        var yearFilter = yearChart.filters().length;
+        //console.log(yearFilter);
+        console.log(monthChart.dimension().filter);
+        //console.log(selectSpecies.data());
+    }
+
+
+};
+
+update();
+
+dcCharts = [selectSpecies, stateChart, monthChart, yearChart];
+
+_.each(dcCharts, function(dcChart) {
+    dcChart.on("filtered", function(chart, filter) {
+        map.eachLayer(function(layer) {
+            map.removeLayer(layer)
         });
-    });
 
-    //RENDER CHARTS
-    dc.renderAll();
+        update();
+    });
+});
+
+//RENDER CHARTS
+dc.renderAll();
 
 }
