@@ -31,55 +31,55 @@
 </head>
 
 <body>
-    <h1>Monotreme sightings accross Australia</h1>
+    <div class="content">
+        <h1>Monotreme sightings accross Australia</h1>
 
-    <div class="top row">
-        <p class="col-md-6">
-            Monotremes are a group of mammals that form the order Monotremata. Monotremes are especially odd in that they are the only mammals that lay eggs, but also feed their offspring with milk. Two of the five species of Monotremes are endemic to Australia.
-            These are the Short-beaked Echidna and the Duck-billed Platypus. The Atlas of Living Australia, or ALA, is a repository of information on Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings of Australian
-            Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings of these elusive animals. You can click on differnet parts of the graphs to show data for just specific species, their
-            occurance over one ore multiple states, and during particular months or years!
-        </p>
-       
-        <div class="col-md-4 img-container">
-            <p class="speciesName">Short-beaked Echidna</p>
-            <img class="photo" src="/static/images/DIvanDuinkerken_768-Echidna-00243.png"></img>
-            
+        <div class="top row">
+            <p class="col-md-6">
+                Monotremes are a group of mammals that form the order Monotremata. Monotremes are especially odd in that they are the only mammals that lay eggs, but also feed their offspring with milk. Two of the five species of Monotremes are endemic to Australia.
+                These are the Short-beaked Echidna and the Duck-billed Platypus. The Atlas of Living Australia, or ALA, is a repository of information on Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings of
+                Australian Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings of these elusive animals. You can click on different parts of the graphs to show data for just specific
+                species, their occurance over one ore multiple states, and during particular months or years!
+            </p>
+
+            <div class="col-md-3 img-container">
+                <p class="speciesName">Short-beaked Echidna</p>
+                <img class="photo" src="/static/images/DIvanDuinkerken_768-Echidna-00243.png"></img>
+
+            </div>
+            <div class="col-md-3 img-container">
+                <p class="speciesName">Duck-billed Platypus</p>
+                <img class="photo" src="/static/images/DIvanDuinkerken_768-Platypus-00701.png"></img>
+            </div>
         </div>
-         <div class="col-md-3 img-container">
-             <p class="speciesName">Duck-billed Platypus</p>
-            <img class="photo" src="/static/images/DIvanDuinkerken_768-Platypus-00701.png"></img>
-            
+
+        <div class="row selectreset">
+            <div id="selectSpecies" class="col-md-3"></div>
+            <a class="reset col-md-3" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
+
+
+            <div class="col-md-3">
+                <p id="Short-beaked Echidna" class="counter"></p>
+            </div>
+            <div class="col-md-3">
+                <p id="Duck-billed Platypus" class="counter"></p>
+            </div>
+        </div>
+
+
+
+        <h2>Sightings across Australia</h2>
+        <div class="row occurances">
+            <div id="sightings_per_state" class="col-md-6"></div>
+            <div id="map" class="col-md-6" style="width:500px; height: 500px;"></div>
+        </div>
+
+        <h2>Sightings over years and months</h2>
+        <div class="row sightings">
+            <div id="sightings_over_year" class="col-md-6"></div>
+            <div id="sightings_over_month" class="col-md-6"></div>
         </div>
     </div>
-
-    <div class="row selectreset">
-        <div id="selectSpecies" class="col-md-3"></div>
-        <a class="reset col-md-3" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
-
-        
-        <div class="col-md-3">
-            <p id="Short-beaked Echidna" class="counter"></p>
-        </div>
-        <div class="col-md-3">
-            <p id="Duck-billed Platypus" class="counter"></p>
-        </div>
-    </div>
-    </div>
-
-
-    <h2>Sightings across Australia</h2>
-    <div class="row occurances">
-        <div id="sightings_per_state" class="col-md-6"></div>
-        <div id="map" class="col-md-6" style="width:500px; height: 500px;"></div>
-    </div>
-
-    <h2>Sightings over years and months</h2>
-    <div class="row sightings">
-        <div id="sightings_over_year" class="col-md-6"></div>
-        <div id="sightings_over_month" class="col-md-6"></div>
-    </div>
-
     <!-- FOOTER -->
     <footer>
         <div class="row">
@@ -91,9 +91,9 @@
                 <p>Images are copyright of Daniel van Duinkerken</p>
             </div>
             <div class="contact col-md-4">
-                <p>Questions, Remarks or Bugs?</p>
-                <p>Contact Me Here!</p>
+                <p>Questions? Remarks? Bugs?</p>
                 <a class="symbol" title="Contact" href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                <p>Contact me here!</p>
             </div>
 
         </div>

@@ -1,16 +1,12 @@
-body {
+.content {
     margin: 40px 80px;
 }
 
 .img-container {
-    max-width: 400px;
+    max-width: 800px;
 }
 
-
-
 .photo {
-    
-    
     width: 100%;
     height: auto;
 }
@@ -56,8 +52,9 @@ body {
 }
 
 footer {
+    color: #3a3a3c;
     height: 250px;
-    background-color: grey;
+    background-color: white;
 }
 
 .ala {
@@ -66,11 +63,17 @@ footer {
 
 .contact p {
     font-size: 30px;
+    text-align: center;
 }
 
 .contact a i {
     font-size: 100px;
-    color: #fafafa;
+    color: #3a3a3c;
+    text-align: center;
+    display: block;
+    margin-top: 25px;
+    margin-bottom: 25px;
+
 }
 
 .dismiss {
