@@ -35,25 +35,34 @@
         <h1>Monotreme sightings accross Australia</h1>
 
         <div class="top row">
-            <p class="col-md-6">
-                Monotremes are a group of mammals that form the order Monotremata. Monotremes are especially odd in that they are the only mammals that lay eggs, but also feed their offspring with milk. Two of the five species of Monotremes are endemic to Australia.
-                These are the Short-beaked Echidna and the Duck-billed Platypus. The Atlas of Living Australia, or ALA, is a repository of information on Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings of
-                Australian Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings of these elusive animals. You can click on different parts of the graphs to show data for just specific
-                species, their occurance over one ore multiple states, and during particular months or years!
-            </p>
+            <div class="col-md-6">
+                <div class="row infoselect">
+                <p class="info col-md-12">
+                    Monotremes are a group of mammals that form the order Monotremata. Monotremes are especially odd in that they are the only mammals that lay eggs, but also feed their offspring with milk. Two of the five species of Monotremes are endemic to Australia.
+                    These are the Short-beaked Echidna and the Duck-billed Platypus. The Atlas of Living Australia, or ALA, is a repository of information on Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings
+                    of Australian Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings of these elusive animals. You can click on different parts of the graphs to show data for just specific
+                    species, their occurance over one ore multiple states, and during particular months or years!
+                </p>
+                
+                    <div id="selectSpecies" class="col-md-4"></div>
+                    <a class="reset col-md-4" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
+                </div>
+            </div>
 
             <div class="col-md-3 img-container">
                 <p class="speciesName">Short-beaked Echidna</p>
                 <img class="photo" src="/static/images/DIvanDuinkerken_768-Echidna-00243.png"></img>
+                <p id="Short-beaked Echidna" class="counter"></p>
 
             </div>
             <div class="col-md-3 img-container">
                 <p class="speciesName">Duck-billed Platypus</p>
                 <img class="photo" src="/static/images/DIvanDuinkerken_768-Platypus-00701.png"></img>
+                <p id="Duck-billed Platypus" class="counter"></p>
             </div>
         </div>
 
-        <div class="row selectreset">
+        <!--  <div class="row selectreset">
             <div id="selectSpecies" class="col-md-3"></div>
             <a class="reset col-md-3" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
 
@@ -64,7 +73,7 @@
             <div class="col-md-3">
                 <p id="Duck-billed Platypus" class="counter"></p>
             </div>
-        </div>
+        </div> -->
 
 
 
@@ -83,18 +92,22 @@
     <!-- FOOTER -->
     <footer>
         <div class="row">
-            <div class="col-md-4">
-                <img class="ala" src="/static/images/Atlas_of_Australia_logo_300.gif"></img>
-            </div>
-            <div class="copyright col-md-4">
-                <p>Data is copyright of Atlas of Living Australia</p>
-                <p>Images are copyright of Daniel van Duinkerken</p>
-            </div>
             <div class="contact col-md-4">
                 <p>Questions? Remarks? Bugs?</p>
                 <a class="symbol" title="Contact" href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
                 <p>Contact me here!</p>
             </div>
+
+            <div class="copyright col-md-4">
+
+                <p>Data is copyright of Atlas of Living Australia</p>
+                <p>Images are copyright of Daniel van Duinkerken</p>
+            </div>
+
+            <div class="col-md-4">
+                <img class="ala" src="static/images/ALA_logobyline_col.png"></img>
+            </div>
+
 
         </div>
     </footer>

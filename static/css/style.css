@@ -1,14 +1,50 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+ h1 {
+     font-size: 60px;
+     margin-top: 80px;
+     margin-bottom: 80px;
+ }
+ 
+ h2 {
+     font-size: 40px;
+     margin-top: 60px;
+     margin-bottom: 40px;
+ }
+ 
 .content {
     margin: 40px 80px;
 }
 
-.img-container {
-    max-width: 800px;
+/*.img-container {
+    max-width: 400px;
+}*/
+
+.info {
+    padding-top: 80px;
+    padding-right: 60px;
+    text-align: justify;
+    font-size: 15px;
+    height: 100%;
 }
 
 .photo {
-    width: 100%;
+    
+    display: block;
     height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+
+    
 }
 
 .speciesName {
@@ -16,9 +52,14 @@
     font-size: 30px;
 }
 
-.selectreset {
-
+.infoselect {
+    height: 80%;
+    vertical-align: middle;
     margin-bottom: 20px;
+}
+
+.reset {
+    text-align: right;
 }
 
 #map {
@@ -26,7 +67,7 @@
 }
 
 .top {
-    height: 50vh;
+    height: 30vw;
 
 }
 
@@ -54,12 +95,18 @@
 footer {
     color: #3a3a3c;
     height: 250px;
-    background-color: white;
+    background-color: #fafafa;
 }
+
 
 .ala {
     height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
+
 
 .contact p {
     font-size: 30px;
@@ -73,7 +120,20 @@ footer {
     display: block;
     margin-top: 25px;
     margin-bottom: 25px;
+    transition: 0.5s ease-in-out;
+}
 
+.contact a i:hover {
+    transform: scale(1.3);
+}
+
+.copyright p {
+    height: 20px;
+}
+
+.copyright {
+    margin-top:180px;
+    text-align: center;
 }
 
 .dismiss {
@@ -81,3 +141,7 @@ footer {
     color: #fff;
     background-color: transparent;
 }
+
+
+
+
