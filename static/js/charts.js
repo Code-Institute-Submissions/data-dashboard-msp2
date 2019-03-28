@@ -1,5 +1,5 @@
 queue()
-    .defer(d3.csv, "/data/monotremeDF.csv")
+    .defer(d3.csv, "data/monotremeDF.csv")
     .await(makeGraphs);
 
 
@@ -109,25 +109,7 @@ function makeGraphs(error, sightingsData) {
         .labelOffsetY(10)
         .xAxis().ticks(4);
 
-    /*    monthChart
-            .width(600)
-            .height(500)
-            .x(d3.scaleLinear().domain([1,12]))
-            .xUnits(dc.units.integers)
-            .yAxisLabel("Month")
-            .legend(dc.legend().x(80).y(20).itemHeight(13).gap(5))
-            .renderHorizontalGridLines(true)
-            .compose([
-                dc.barChart(monthChart)
-                .dimension(yearDim)
-                .colors('green')
-                .group(sightingsmonthGroupEchidna, 'Short-beaked Echidna'),
-                dc.barChart(monthChart)
-                .dimension(monthDim)
-                .colors('blue')
-                .group(sightingsmonthGroupPlatypus, 'Duck-billed Platypus')
 
-            ]);*/
 
     monthChart
         .width(600)
@@ -175,11 +157,6 @@ function makeGraphs(error, sightingsData) {
 
 
 
-// Add Data on Monotreme numbers to DOM
-
-
-
-
 //Initialize Leaflet Map
 var map = L.map('map');
 
@@ -215,12 +192,8 @@ var update = function() {
         var numbers = speciesGroup.all()[i].value;
         document.getElementById(id).innerHTML = (numbers);
 
-
-        var yearFilter = yearChart.filters().length;
-        //console.log(yearFilter);
-        console.log(monthChart.dimension().filter);
-        //console.log(selectSpecies.data());
-    }
+       
+        }
 
 
 };
