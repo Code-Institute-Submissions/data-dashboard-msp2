@@ -23,40 +23,36 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.heat/0.2.0/leaflet-heat.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
     <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("user_JsCgifWzGzPgQmwuLy7sK");
-        })();
-    </script>
+
 </head>
 
 <body>
-    <div class="content">
-        <h1>Monotreme sightings accross Australia</h1>
+    <div id="width" class="content">
+        <h1>Monotreme sightings across Australia</h1>
 
         <div class="top row">
-            <div class="col-md-6">
+            <div class="col-lg-6 col-12">
                 <div class="row infoselect">
-                    <p class="info col-md-12">
+                    <p class="info col-lg-12">
                         <a href="https://en.wikipedia.org/wiki/Monotreme" target="blank">Monotremes</a> are a group of mammals that form the order Monotremata. Monotremes are especially odd in that they are the only mammals that lay eggs, but also feed
                         their offspring with milk. Two of the five species of Monotremes are endemic to Australia. These are the Short-beaked Echidna and the Duck-billed Platypus. The Atlas of Living Australia, or ALA, is a repository of information on
                         Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings of Australian Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings
-                        of these elusive animals. You can click on different parts of the graphs to show data for just specific species, their occurance over one or multiple states, and during particular months or years! Just click 'Reset All' to reset
-                        the graphs!
+                        of these elusive animals. You can click on different parts of the graphs to show data for just one specific species, their occurance over one or multiple states, and during particular months or years! Just click 'Reset All' to
+                        reset the graphs!
                     </p>
 
-                    <div id="selectSpecies" class="col-md-4"></div>
-                    <a class="reset col-md-4" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
+                    <div id="selectSpecies" class="col-lg-5 col-6"></div>
+                    <a class="reset col-lg-6 col-6" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
                 </div>
             </div>
 
-            <div class="col-md-3 img-container">
+            <div class="col-lg-3 col-6 img-container">
                 <p class="speciesName">Short-beaked Echidna</p>
                 <img class="photo" src="static/images/DIvanDuinkerken_768-Echidna-00243.png"></img>
                 <p id="Short-beaked Echidna" class="counter"></p>
 
             </div>
-            <div class="col-md-3 img-container">
+            <div class="col-lg-3 col-6 img-container">
                 <p class="speciesName">Duck-billed Platypus</p>
                 <img class="photo" src="static/images/DIvanDuinkerken_768-Platypus-00701.png"></img>
                 <p id="Duck-billed Platypus" class="counter"></p>
@@ -67,35 +63,34 @@
 
         <h2>Sightings across Australia</h2>
         <div class="row occurances">
-            <div id="sightings_per_state" class="col-md-6"></div>
-            <div id="map" class="col-md-6" style="width:500px; height: 500px;"></div>
+            <div id="sightings_per_state" class="col-lg-6 col-12"></div>
+            <div id="map" class="col-lg-6 col-12"></div>
         </div>
 
         <h2>Sightings over years and months</h2>
         <div class="row sightings">
-            <div id="sightings_over_year" class="col-md-6"></div>
-            <div id="sightings_over_month" class="col-md-6"></div>
+            <div id="sightings_over_year" class="col-lg-6 col-12"></div>
+            <div id="sightings_over_month" class="col-lg-6 col-12"></div>
         </div>
     </div>
     <!-- FOOTER -->
     <footer>
         <div class="row">
-            <div class="contact col-md-4">
+            <div class="contact col-6">
                 <p>Questions? Remarks? Bugs?</p>
                 <a class="symbol" title="Contact" href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
                 <p>Contact me here!</p>
             </div>
 
-            <div class="copyright col-md-4">
-                <p>Data is copyright of <a href="https://www.ala.org.au/" target="blank">Atlas of Living Australia</a></p>
-                <p>Images are copyright of Daniel van Duinkerken</p>
-            </div>
-
-            <div class="col-md-4">
+            <div class="col-6">
                 <a href="https://www.ala.org.au/" target="blank"><img class="ala" src="static/images/ALA_logobyline_col.png"></img></a>
             </div>
-
-
+        </div>
+        <div class="row">
+             <div class="copyright col-12">
+                <p>Data is copyright of <a href="https://www.ala.org.au/" target="blank">Atlas of Living Australia</a> | Images are copyright of <a href="www.danielvandphoto.com" target="blank">Daniel van Duinkerken</p>
+                <p></p>
+            </div>
         </div>
     </footer>
 
@@ -140,6 +135,11 @@
     <script type="text/javascript" src="static/js/sendemail.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_JsCgifWzGzPgQmwuLy7sK");
+        })();
+    </script>
     <script>
         $('#myModal').submit(function() {
             $('#myModal').modal('hide');

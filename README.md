@@ -114,3 +114,5 @@ Open <https://daanivd.github.io/data-dashboard-msp2> in your browser of preferen
 [Close Modal after submit](https://stackoverflow.com/questions/29754902/close-bootstrap-modal-after-submit)
 
 [Add x/y labels to rowChart](https://www.intothevoid.io/data-visualization/row-chart-axis-labels-dc-js/)
+
+[How to make dc-js-charts responsive](https://stackoverflow.com/questions/22292369/how-to-make-the-dc-js-charts-responsive)

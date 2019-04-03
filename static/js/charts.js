@@ -19,7 +19,6 @@ function makeGraphs(error, sightingsData) {
         d["individualCount"] = +d["individualCount"];
     });
 
-    //console.log(sightingsData);
 
     //CREATE DIMENSIONS
     var dateDim = ndx.dimension(function(d) { return d["eventDate"] });
@@ -33,7 +32,6 @@ function makeGraphs(error, sightingsData) {
     var minDate = dateDim.bottom(1)[0];
     var maxDate = dateDim.top(1)[0];
 
-    console.log(maxDate);
 
     //CREATE GROUPS 
     var speciesGroup = speciesDim.group().reduceSum(function(d) {
@@ -90,18 +88,28 @@ function makeGraphs(error, sightingsData) {
     //DC.JS Charts
     var selectSpecies = dc.selectMenu("#selectSpecies");
     var stateChart = dc.rowChart("#sightings_per_state");
-    monthChart = dc.barChart('#sightings_over_month');
-    yearChart = dc.compositeChart('#sightings_over_year');
+    var monthChart = dc.barChart('#sightings_over_month');
+    var yearChart = dc.compositeChart('#sightings_over_year');
 
     //CHART PROPERTIES
+    var width = document.getElementById('width').offsetWidth;
+    console.log(width);
+    
+    if (width<992) {
+        width = width;
+    }
+    else if (width => 992) {
+        width = width/2;
+    }
+    
     selectSpecies
         .dimension(speciesDim)
         .group(speciesGroup)
         .controlsUseVisibility(true);
 
     stateChart
-        .width(600)
-        .height(555)
+        .width(width)
+        .height(500)
         .dimension(stateDim)
         .group(sightingsStateGroup)
         .colors(['brown'])
@@ -112,7 +120,7 @@ function makeGraphs(error, sightingsData) {
 
 
     monthChart
-        .width(600)
+        .width(width)
         .height(500)
         .dimension(monthDim)
         .legend(dc.legend().x(100).y(15).itemHeight(13).gap(5))
@@ -130,30 +138,30 @@ function makeGraphs(error, sightingsData) {
 
  
 
-                yearChart
-                .width(600)
-                .height(500)
-                .x(d3.scaleLinear().domain([2000, 2018]))
-                //.mouseZoomable(true)
-                .xUnits(dc.units.integers)
-                .yAxisLabel("Number of sightings")
-                .xAxisLabel("Year")
-                .elasticY(true)
-                .legend(dc.legend().x(400).y(15).itemHeight(13).gap(5))
-                .renderHorizontalGridLines(true)
-                .renderVerticalGridLines(true)
-                .compose([
-                    dc.lineChart(yearChart)
-                    .dimension(yearDim)
-                    .colors('green')
-                    .group(sightingsyearGroupEchidna, 'Short-beaked Echidna')
-                    .renderArea(true),
-                    dc.lineChart(yearChart)
-                    .dimension(yearDim)
-                    .colors('blue')
-                    .group(sightingsyearGroupPlatypus, 'Duck-billed Platypus')
-                    .renderArea(true)
-                ]);
+    yearChart
+        .width(width)
+        .height(500)
+        .x(d3.scaleLinear().domain([2000, 2018]))
+        //.mouseZoomable(true)
+        .xUnits(dc.units.integers)
+        .yAxisLabel("Number of sightings")
+        .xAxisLabel("Year")
+        .elasticY(true)
+        .legend(dc.legend().x(400).y(15).itemHeight(13).gap(5))
+        .renderHorizontalGridLines(true)
+        .renderVerticalGridLines(true)
+        .compose([
+            dc.lineChart(yearChart)
+            .dimension(yearDim)
+            .colors('green')
+            .group(sightingsyearGroupEchidna, 'Short-beaked Echidna')
+            .renderArea(true),
+            dc.lineChart(yearChart)
+            .dimension(yearDim)
+            .colors('blue')
+            .group(sightingsyearGroupPlatypus, 'Duck-billed Platypus')
+            .renderArea(true)
+        ]);
 
 
 
@@ -162,14 +170,22 @@ var map = L.map('map');
 
 //Data to be updated everytime crossfilter data is filtered (map and number counts of respective species)
 var update = function() {
+    if (width<600) {
+        var zoom=3;
+    }
+    else {
+        zoom=4;
+    }
+    
+   
     //Draw Map of Australia
-    map.setView([-29.2744, 133.7751], 4).scrollWheelZoom.disable();
+    map.setView([-29.2744, 133.7751], zoom).scrollWheelZoom.disable();
     mapLink = '<a href="http://openstreetmap.org">OpenStreetMap</a>';
     L.tileLayer(
         'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; ' + mapLink + ' Contributors',
             maxZoom: 15,
-            minZoom: 4,
+            minZoom: zoom,
         }).addTo(map);
 
 
@@ -185,6 +201,9 @@ var update = function() {
         blur: 20,
         maxZoom: 1,
     }).addTo(map);
+    
+
+    
 
     // Add Data on Monotreme numbers to DOM
     for (i = 0; i < 2; i++) {
