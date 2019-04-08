@@ -27,7 +27,7 @@
 </head>
 
 <body>
-    <div id="width" class="content">
+    <div id="width" class="content container">
         <h1>Monotreme sightings across Australia</h1>
 
         <div class="top row">
@@ -36,13 +36,16 @@
                     <p class="info col-lg-12">
                         <a href="https://en.wikipedia.org/wiki/Monotreme" target="blank">Monotremes</a> are a group of mammals that form the order Monotremata. Monotremes are especially odd in that they are the only mammals that lay eggs, but also feed
                         their offspring with milk. Two of the five species of Monotremes are endemic to Australia. These are the Short-beaked Echidna and the Duck-billed Platypus. The Atlas of Living Australia, or ALA, is a repository of information on
-                        Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings of Australian Monotremes since 2000. Please explore these graphs and map to have a look at the distribution, occurances and sightings
+                        Australian plants, animals and fungi. The interactive Data Dashboard below shows the sightings of Australian Monotremes since 2000. 
+                        <br>
+                        Please explore these graphs and map to have a look at the distribution, occurances and sightings
                         of these elusive animals. You can click on different parts of the graphs to show data for just one specific species, their occurance over one or multiple states, and during particular months or years! Just click 'Reset All' to
                         reset the graphs!
                     </p>
-
-                    <div id="selectSpecies" class="col-lg-5 col-6"></div>
-                    <a class="reset col-lg-6 col-6" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
+                    <div class="row">
+                        <div id="selectSpecies" class="col-lg-5 col-6"></div>
+                        <a class="reset col-lg-6 col-6" href="javascript:dc.filterAll();dc.renderAll();">RESET ALL</a>
+                    </div>
                 </div>
             </div>
 
@@ -62,22 +65,37 @@
 
 
         <h2>Sightings across Australia</h2>
-        <div class="row occurances">
-            <div id="sightings_per_state" class="col-lg-6 col-12"></div>
-            <div id="map" class="col-lg-6 col-12"></div>
+        <div class="row">
+            <div class="occurances col-lg-6 col-12">
+                <div id="sightings_per_state"></div>
+                <p class="subtext">Number of animals seen per Australian state</p>
+            </div>
+            <div class="occurances col-lg-6 col-12">
+                <div id="map"></div>
+                <p class="subtext">Sightings displayed on map</p>
+            </div>
         </div>
 
-        <h2>Sightings over years and months</h2>
-        <div class="row sightings">
-            <div id="sightings_over_year" class="col-lg-6 col-12"></div>
-            <div id="sightings_over_month" class="col-lg-6 col-12"></div>
+
+
+        <h2>Sightings over time and seasonality</h2>
+        <div class="row">
+            <div class="sightings col-lg-6 col-12">
+                <div id="sightings_over_year"></div>
+                <p class="subtext">Number of individuals seen per year</p>
+            </div>
+
+            <div class="sightings col-lg-6 col-12">
+                <div id="sightings_over_month"></div>
+                <p class="subtext">Number of individuals seen per month</p>
+            </div>
         </div>
     </div>
     <!-- FOOTER -->
     <footer>
         <div class="row">
             <div class="contact col-6">
-                <p>Questions? Remarks? Bugs?</p>
+                <p class="question">Questions? Remarks? Bugs?</p>
                 <a class="symbol" title="Contact" href="" data-toggle="modal" data-target="#myModal"><i class="fa fa-envelope-o" aria-hidden="true"></i></a>
                 <p>Contact me here!</p>
             </div>
@@ -87,7 +105,7 @@
             </div>
         </div>
         <div class="row">
-             <div class="copyright col-12">
+            <div class="copyright col-12">
                 <p>Data is copyright of <a href="https://www.ala.org.au/" target="blank">Atlas of Living Australia</a> | Images are copyright of <a href="www.danielvandphoto.com" target="blank">Daniel van Duinkerken</p>
                 <p></p>
             </div>
