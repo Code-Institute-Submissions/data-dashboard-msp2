@@ -114,6 +114,7 @@ function makeGraphs(error, sightingsData) {
     stateChart
         .width(width)
         .height(height)
+        .margins({top: 0, right: 60, bottom: 20, left: 5})
         .dimension(stateDim)
         .group(sightingsStateGroup)
         .colors(['brown'])
