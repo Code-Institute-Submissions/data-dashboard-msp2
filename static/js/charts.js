@@ -21,7 +21,6 @@ function makeGraphs(error, sightingsData) {
 
 
     //CREATE DIMENSIONS
-    var dateDim = ndx.dimension(function(datapoint) { return datapoint["eventDate"] });
     var speciesDim = ndx.dimension(dc.pluck('vernacularName'));
     var stateDim = ndx.dimension(dc.pluck('stateProvince'));
     var monthDim = ndx.dimension(dc.pluck('month'));
@@ -29,16 +28,11 @@ function makeGraphs(error, sightingsData) {
     var allDim = ndx.dimension(function(datapoint) { return datapoint; });
 
 
-    var minDate = dateDim.bottom(1)[0];
-    var maxDate = dateDim.top(1)[0];
-
-
     //CREATE GROUPS 
     var speciesGroup = speciesDim.group().reduceSum(function(datapoint) {
         return +datapoint.individualCount
     });
 
-    var dateDim = ndx.dimension(function(datapoint) { return datapoint["eventDate"] });
 
     var sightingsStateGroup = stateDim.group().reduceSum(function(datapoint) {
         return +datapoint.individualCount
@@ -102,9 +96,6 @@ function makeGraphs(error, sightingsData) {
     else if (contentWidth => 960) {
         width = 0.5 * contentWidth;
     }
-    console.log("contentWidth = "+contentWidth);
-    console.log("width = " + width);
-    console.log("height = " + height)
 
     selectSpecies
         .dimension(speciesDim)
@@ -128,7 +119,7 @@ function makeGraphs(error, sightingsData) {
         .width(width)
         .height(height)
         .dimension(monthDim)
-        .legend(dc.legend().x(100).y(15).itemHeight(13).gap(5))
+        .legend(dc.legend().x(width/4).y(15).itemHeight(13).gap(5))
         .group(sightingsmonthGroupPlatypus, 'Duck-billed Platypus')
         .stack(sightingsmonthGroupEchidna, 'Short-beaked Echidna')
         .ordinalColors(['blue', 'green'])
@@ -138,8 +129,7 @@ function makeGraphs(error, sightingsData) {
         .elasticY(true)
         .xAxisLabel('Month')
         .yAxisLabel("Number of sightings")
-        .renderHorizontalGridLines(true)
-    //.yAxis().ticks(10);
+        .renderHorizontalGridLines(true);
 
 
 
@@ -147,12 +137,11 @@ function makeGraphs(error, sightingsData) {
         .width(width)
         .height(height)
         .x(d3.scaleLinear().domain([2000, 2018]))
-        //.mouseZoomable(true)
         .xUnits(dc.units.integers)
         .yAxisLabel("Number of sightings")
         .xAxisLabel("Year")
         .elasticY(true)
-        .legend(dc.legend().x(400).y(15).itemHeight(13).gap(5))
+        .legend(dc.legend().x(width/1.6).y(15).itemHeight(13).gap(5))
         .renderHorizontalGridLines(true)
         .renderVerticalGridLines(true)
         .compose([
