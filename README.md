@@ -91,8 +91,7 @@ A tourist:
 Open <https://daanivd.github.io/data-dashboard-msp2> in your browser of preference.
 
 ## Contributing
- 
-
+Data from The [Atlas of Living Australia](https://www.ala.org.au/) was used.
 
 ## Credits
 
