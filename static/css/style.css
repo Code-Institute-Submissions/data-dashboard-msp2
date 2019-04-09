@@ -1,3 +1,4 @@
+/*GENERAL*/
 body {
     font-family: 'Roboto', sans-serif;
 }
@@ -9,7 +10,6 @@ h2 {
 
 h1 {
     font-size: 35px;
-
     margin-bottom: 40px;
 }
 
@@ -19,28 +19,24 @@ h2 {
     margin-bottom: 30px;
 }
 
-
-
 .content {
     margin-top: 40px;
 }
 
 .row {
-    
     width: 100%;
 }
 
-.info {
 
+/*TOP ROW*/
+.info {
     padding-right: 60px;
     padding-left: 0px;
     text-align: justify;
     font-size: 15px;
     height: 100%;
-    
+
 }
-
-
 
 .photo {
     display: block;
@@ -50,8 +46,6 @@ h2 {
     width: 100%;
     padding-right: 0px !important;
     padding-left: 0px !important;
-
-
 }
 
 #selectSpecies {
@@ -69,10 +63,18 @@ h2 {
     margin-bottom: 20px;
 }
 
-.reset {
-    text-align: right;
+.counter {
+    text-align: center;
+    font-size: 50px;
 }
 
+.reset {
+    text-align: right;
+    color: #f5f5f5;
+}
+
+
+/*CHARTS & MAP*/
 #map {
     height: 500px !important;
 }
@@ -81,10 +83,6 @@ h2 {
     margin-top: 55px;
 }
 
-.counter {
-    text-align: center;
-    font-size: 50px;
-}
 
 #map {
     margin-top: 50px;
@@ -94,20 +92,16 @@ h2 {
     margin-bottom: 50px;
 }
 
-.reset {
-    color: #f5f5f5;
-}
 
 .subtext {
     text-align: center;
 }
 
-
+/*FOOTER*/
 footer {
     color: #3a3a3c;
     background-color: #fafafa;
 }
-
 
 .ala {
     height: 250px;
@@ -116,7 +110,6 @@ footer {
     margin-right: auto;
     width: auto;
 }
-
 
 .contact p {
     font-size: 30px;
@@ -137,8 +130,6 @@ footer {
     transform: scale(1.3);
 }
 
-
-
 .copyright {
     margin-top: 20px;
 
@@ -152,22 +143,32 @@ footer {
     background-color: transparent;
 }
 
+/*SCREENS SMALLER THAN 992px */
+
 @media only screen and (max-width: 992px) {
+    /*GENERAL*/
+     .row {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+    }
+    
     .container {
         padding-right: 0px;
         padding-left: 0px;
     }
-
+    
+    .content {
+        width: 100vw;
+        text-align: center;
+    }
+    /*TOP ROW*/
     #selectSpecies {
         color: #ebebeb;
         padding: 0px 0px 0px 0px;
     }
 
-
-
     select {
-        font-family: 'Roboto', sans-serif;
-        ;
         font-size: 15px;
         border: none;
     }
@@ -176,21 +177,9 @@ footer {
         font-size: 35px;
     }
 
-    .row {
-        margin-left: 0px;
-        margin-right: 0px;
-        width: 100%;
-    }
-
     .speciesName {
         text-align: center;
         font-size: 20px;
-    }
-
-    .content {
-        width: 100vw;
-        text-align: center;
-
     }
 
     .info {
@@ -203,14 +192,16 @@ footer {
         padding-top: 30px;
     }
 
-    .dc-chart {
-        text-align: center;
+    /*CHARTS & MAP*/
+    div.dc-chart {
+        float: none;
     }
 
     #map {
         height: 400px !important;
     }
 
+    /*FOOTER*/
     .ala {
         height: 125px;
         display: block;
@@ -239,7 +230,4 @@ footer {
         margin-bottom: 15px;
         transition: 0.5s ease-in-out;
     }
-
-
-
 }
