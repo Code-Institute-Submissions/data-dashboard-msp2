@@ -1,5 +1,5 @@
 queue()
-    .defer(d3.csv, "data/monotremeDF.csv")
+    .defer(d3.csv, 'data/monotremeDF.csv')
     .await(makeGraphs);
 
 
@@ -8,15 +8,15 @@ function makeGraphs(error, sightingsData) {
     //CREATE CROSSFILTER RECORD
     var ndx = crossfilter(sightingsData);
 
-    var dateFormat = d3.timeParse("%Y-%m-%d");
+    var dateFormat = d3.timeParse('%Y-%m-%d');
 
     sightingsData.forEach(function(datapoint) {
-        datapoint["eventDate"] = dateFormat(datapoint["eventDate"]);
-        datapoint["decimalLongitude"] = +datapoint["decimalLongitude"];
-        datapoint["decimalLatitude"] = +datapoint["decimalLatitude"];
-        datapoint["month"] = +datapoint["month"];
-        datapoint["year"] = +datapoint["year"];
-        datapoint["individualCount"] = +datapoint["individualCount"];
+        datapoint['eventDate'] = dateFormat(datapoint['eventDate']);
+        datapoint['decimalLongitude'] = +datapoint['decimalLongitude'];
+        datapoint['decimalLatitude'] = +datapoint['decimalLatitude'];
+        datapoint['month'] = +datapoint['month'];
+        datapoint['year'] = +datapoint['year'];
+        datapoint['individualCount'] = +datapoint['individualCount'];
     });
 
 
@@ -80,8 +80,8 @@ function makeGraphs(error, sightingsData) {
 
 
     //DC.JS Charts
-    var selectSpecies = dc.selectMenu("#selectSpecies");
-    var stateChart = dc.rowChart("#sightings_per_state");
+    var selectSpecies = dc.selectMenu('#selectSpecies');
+    var stateChart = dc.rowChart('#sightings_per_state');
     var monthChart = dc.barChart('#sightings_over_month');
     var yearChart = dc.compositeChart('#sightings_over_year');
 
@@ -128,7 +128,7 @@ function makeGraphs(error, sightingsData) {
         .xUnits(dc.units.ordinal)
         .elasticY(true)
         .xAxisLabel('Month')
-        .yAxisLabel("Number of sightings")
+        .yAxisLabel('Number of sightings')
         .renderHorizontalGridLines(true);
 
 
@@ -138,8 +138,8 @@ function makeGraphs(error, sightingsData) {
         .height(height)
         .x(d3.scaleLinear().domain([2000, 2018]))
         .xUnits(dc.units.integers)
-        .yAxisLabel("Number of sightings")
-        .xAxisLabel("Year")
+        .yAxisLabel('Number of sightings')
+        .xAxisLabel('Year')
         .elasticY(true)
         .legend(dc.legend().x(width/1.6).y(15).itemHeight(13).gap(5))
         .renderHorizontalGridLines(true)
@@ -186,7 +186,7 @@ function makeGraphs(error, sightingsData) {
         // Add heat map data
         var geoData = [];
         _.each(allDim.top(Infinity), function(datapoint) {
-            geoData.push([datapoint["decimalLatitude"], datapoint["decimalLongitude"], datapoint["individualCount"]]);
+            geoData.push([datapoint['decimalLatitude'], datapoint['decimalLongitude'], datapoint['individualCount']]);
         })
         var length = geoData.length
 
@@ -216,7 +216,7 @@ function makeGraphs(error, sightingsData) {
     dcCharts = [selectSpecies, stateChart, monthChart, yearChart];
 
     _.each(dcCharts, function(dcChart) {
-        dcChart.on("filtered", function(chart, filter) {
+        dcChart.on('filtered', function(chart, filter) {
             map.eachLayer(function(layer) {
                 map.removeLayer(layer)
             });

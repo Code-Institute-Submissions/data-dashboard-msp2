@@ -83,6 +83,17 @@ h2 {
     margin-top: 55px;
 }
 
+.x-axis-label {
+    fill: #f5f5f5 ;
+}
+
+.y-axis-label {
+    fill: #f5f5f5 
+}
+
+g text {
+    fill: #f5f5f5;
+}
 
 #map {
     margin-top: 50px;

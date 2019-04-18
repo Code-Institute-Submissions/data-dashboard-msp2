@@ -45,7 +45,9 @@ A tourist:
 
 
 ### Features Left to Implement
-- None
+- Adjust charts based on area of Australia shown in the Map-div. Ie. Only use the available datapoints that are shown on the map (when zoomed in) for 
+  the charts. 
+- Adjust y-axis lines on the line chart to be all the way to the top on all selections.
 
 ## Tech Used
 
@@ -84,7 +86,7 @@ A tourist:
 
 ### Deployment through Cloud9
 1. Create a blank workspace in your Cloud9 dashboard.
-2. Get all data from github using 'https://github.com/Daanivd/data-dashboard-msp2' command in the C9 CLI
+2. Get all files from github using 'git clone https://github.com/Daanivd/data-dashboard-msp2' command in the C9 CLI
 3. Open up data-dashboard/index.html and click 'Run'. Click on the link for the running app, click 'open app' to view the website.
 
 ### Deployment through GitHub
